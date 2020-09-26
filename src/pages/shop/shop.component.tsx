@@ -6,7 +6,7 @@ const ShopPage = () => {
   const [collections] = useState(SHOP_DATA)
 
   return(
-    <div>
+    <div className='shop-page'>
       {
         collections.map(({ id, ...collectionProps}) => (
           <CollectionPreview key={id } {...collectionProps}/>
