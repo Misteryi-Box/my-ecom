@@ -14,7 +14,7 @@ const CollectionItem = ({
   imageUrl,
   price
 }: CollectionItemProps) => (
-  <div className='collection-item'>{console.log('hello', imageUrl)}
+  <div className='collection-item'>
     <div 
       className='image'
       style={{

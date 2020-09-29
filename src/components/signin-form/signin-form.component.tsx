@@ -2,6 +2,8 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import CustomButton from '../custom-button/custom-button.component';
+
+import { signInWithGoogle } from '../../firebase/firebase.utils';
 import './signin-form.styles.scss';
 
 interface SignInFormInputs {
@@ -17,7 +19,7 @@ const SignInForm = () => {
   };
 
   return (
-    <div >
+    <div className='signin-form'>
       <h2>I already have an account</h2>
       <span>Sign in with your email and password</span>
 
@@ -38,8 +40,11 @@ const SignInForm = () => {
         <label>Email</label>
         <input name='password' type='password' /*value={password}*/ ref={register({ required: true})} required/>
         <label>Password</label>
-        {/* <input type='submit' value='Submit Form' /> */}
-        <CustomButton type='submit'>Something</CustomButton>
+        <div className='buttons'>
+          <CustomButton type='submit'>Sign in</CustomButton>
+          <CustomButton onClick={signInWithGoogle} isGoogleSignIn>Sign in with Google</CustomButton>
+        </div>
+        
       </form>
     </div>
   )
