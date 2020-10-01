@@ -1,4 +1,3 @@
-import { title } from 'process';
 import React from 'react';
 
 import CollectionItem from '../collection-item/collection-item.component';

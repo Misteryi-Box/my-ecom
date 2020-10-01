@@ -1,19 +1,20 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
+import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 
 import { signInWithGoogle } from '../../firebase/firebase.utils';
 import './signin-form.styles.scss';
 
-interface SignInFormInputs {
-  email: string,
+interface SubmissionInputs {
+  email: string
   password: string
 }
 const SignInForm = () => {
-  const { register, handleSubmit, errors, reset } = useForm<SignInFormInputs>();
+  const { register, handleSubmit, errors, reset } = useForm<SubmissionInputs>();
 
-  const onSubmit = (data: SignInFormInputs) => {
+  const onSubmit = (data: SubmissionInputs) => {
     console.log(data)
     reset();
   };
@@ -24,10 +25,12 @@ const SignInForm = () => {
       <span>Sign in with your email and password</span>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input 
+        <FormInput 
           name='email' /*value={email}*/
           type='email'
-          ref={
+          label='Email'
+          errors={errors}
+          refPass={
             register({ 
               required: "Required", //or boolean
               pattern: {
@@ -36,10 +39,17 @@ const SignInForm = () => {
               } 
             })
           } 
-          required/>
-        <label>Email</label>
-        <input name='password' type='password' /*value={password}*/ ref={register({ required: true})} required/>
-        <label>Password</label>
+          // required
+        />
+        {/* <label>Email</label> */}
+        <FormInput 
+          name='password' 
+          type='password' /*value={password}*/ 
+          refPass={register({ required: true})} 
+          label="Password"
+          // required
+        />
+        {/* <label>Password</label> */}
         <div className='buttons'>
           <CustomButton type='submit'>Sign in</CustomButton>
           <CustomButton onClick={signInWithGoogle} isGoogleSignIn>Sign in with Google</CustomButton>

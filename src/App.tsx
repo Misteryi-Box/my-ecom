@@ -8,7 +8,7 @@ import SignInPage from './pages/signin/signin.component';
 
 import Header from './components/header/header.component';
 
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 
 function App() {
@@ -16,14 +16,32 @@ function App() {
   const [currentUser, setCurrentUser] = useState<any>(undefined);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
-      console.log('user in useEffect', user)
-      setCurrentUser(user)
-    })
+    const unsubscribe = auth.onAuthStateChanged(async userAuth => {
+      // console.log('here', userAuth)
+      // setCurrentUser({...currentUser, something: 'hello'});
+      if(!currentUser && userAuth) {
+        const userRef = await createUserProfileDocument(userAuth)
+        console.log('userRef', userRef)
+        userRef?.onSnapshot( snapShot => {
+          // console.log(snapShot.data())
+          setCurrentUser({
+            ...currentUser,
+            id: snapShot.id,
+            ...snapShot.data()
+          })
+        })
+        console.log('testing currentUser', currentUser)
+      } else if (currentUser && !userAuth){
+        setCurrentUser(undefined)
+      }
+    });
     return () => {
       unsubscribe();
     }
-  })
+  }, [currentUser])
+
+  console.log('currentUser after', currentUser)
+
   return (
     <div>
       <Header currentUser={currentUser}/>

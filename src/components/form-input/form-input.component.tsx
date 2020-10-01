@@ -1,19 +1,22 @@
-import React from 'react';
+import React, {InputHTMLAttributes} from 'react';
 
 import './form-input.styles.scss';
 
-interface FormInputProps {
-  register: any,
-  length: number,
-  label: boolean,
+interface FormInputProps extends InputHTMLAttributes<HTMLInputElement>{
+  refPass?: any;
+  errors?: any;
+  length?: number;
+  label?: string;
 }
 const FormInput = ({
-  register,
+  refPass,
+  errors,
   label,
   length,
+  ...otherProps
 }: FormInputProps) => (
   <div className="group">
-    <input className='form-input' />
+    <input className='form-input' ref={refPass} {...otherProps}/>
     {
       label 
         ? (
@@ -23,6 +26,7 @@ const FormInput = ({
         )        
         : null
     }
+    { errors && errors[`${otherProps.name}`] && errors[`${otherProps.name}`].message }
   </div>
 );
 

@@ -11,7 +11,7 @@ import MenuItem from '../menu-item/menu-item.component';
 // }
 
 const Directory = () => {
-  const [sections, setSections] = useState([
+  const [sections/*, setSections*/] = useState([
   {
     title: 'hats',
     imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
