@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SignInForm from '../../components/signin-form/signin-form.component';
+import SignIn from '../../components/sign-in/sign-in.component';
 import SignUp from '../../components/sign-up/sign-up.component';
 import './signin.styles.scss';
 
@@ -8,7 +8,7 @@ import './signin.styles.scss';
 
 const SignInAndSignUp = () => (
   <div className='sign-in-and-sign-up'>
-    <SignInForm />
+    <SignIn />
     <SignUp />
   </div>
 );

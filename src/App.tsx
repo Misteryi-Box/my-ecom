@@ -23,7 +23,7 @@ function App() {
         const userRef = await createUserProfileDocument(userAuth)
         console.log('userRef', userRef)
         userRef?.onSnapshot( snapShot => {
-          // console.log(snapShot.data())
+          console.log('snapShot.data()', snapShot.data())
           setCurrentUser({
             ...currentUser,
             id: snapShot.id,
@@ -40,8 +40,6 @@ function App() {
     }
   }, [currentUser])
 
-  console.log('currentUser after', currentUser)
-
   return (
     <div>
       <Header currentUser={currentUser}/>
@@ -50,7 +48,6 @@ function App() {
         <Route exact path='/shop' component={ShopPage}/>
         <Route exact path='/signin' component={SignInPage}/>
       </Switch>
-      {/* <Homepage /> */}
     </div>
   );
 }
