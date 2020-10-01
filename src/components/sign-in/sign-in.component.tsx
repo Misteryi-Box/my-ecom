@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 
-import { signInWithGoogle } from '../../firebase/firebase.utils';
+import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 import './sign-in.styles.scss';
 
 interface SubmissionInputs {
@@ -14,9 +14,15 @@ interface SubmissionInputs {
 const SignInForm = () => {
   const { register, handleSubmit, errors, reset } = useForm<SubmissionInputs>();
 
-  const onSubmit = (data: SubmissionInputs) => {
+  const onSubmit = async (data: SubmissionInputs) => {
+    const { email, password } = data;
     console.log(data)
-    reset();
+    try {
+      await auth.signInWithEmailAndPassword(email,password);
+      reset();
+    } catch (err){
+      console.error(err);
+    }
   };
 
   return (

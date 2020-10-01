@@ -17,11 +17,9 @@ function App() {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async userAuth => {
-      // console.log('here', userAuth)
       // setCurrentUser({...currentUser, something: 'hello'});
       if(!currentUser && userAuth) {
         const userRef = await createUserProfileDocument(userAuth)
-        console.log('userRef', userRef)
         userRef?.onSnapshot( snapShot => {
           console.log('snapShot.data()', snapShot.data())
           setCurrentUser({
@@ -30,11 +28,11 @@ function App() {
             ...snapShot.data()
           })
         })
-        console.log('testing currentUser', currentUser)
       } else if (currentUser && !userAuth){
         setCurrentUser(undefined)
       }
     });
+    console.log('testing currentUser', currentUser)
     return () => {
       unsubscribe();
     }
