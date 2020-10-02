@@ -1,6 +1,6 @@
-import {UserState} from './user.types'
+import { UserActionTypes, UserState} from './user.types'
 
 export const setCurrentUser = (user: UserState) => ({
-  type: 'SET_CURRENT_USER',
+  type: UserActionTypes.SET_CURRENT_USER,
   payload: user
 });

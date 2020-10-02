@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { Dispatch } from "redux";
 import {connect} from 'react-redux'
 import Homepage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import SignInSignUpPage from './pages/sign-in-sign-up/sign-in-sign-up.component';
+import { AppState } from './redux/store';
 
 import Header from './components/header/header.component';
 
@@ -13,9 +14,11 @@ import { setCurrentUser } from './redux/user/user.actions';
 import './App.css';
 
 interface AppProps {
+  currentUser: any;
   setCurrentUser: any;
 }
 const App = ({
+  currentUser,
   setCurrentUser
 }: AppProps) => {
 
@@ -47,13 +50,19 @@ const App = ({
       <Switch>
         <Route exact path='/' component={Homepage}/>
         <Route exact path='/shop' component={ShopPage}/>
-        <Route exact path='/signin' component={SignInSignUpPage}/>
+        {/* <Route exact path='/signin' component={SignInSignUpPage}/> */}
+        <Route exact path='/signin' render={() => 
+          ( currentUser ? (<Redirect to='/' />) : <SignInSignUpPage /> )
+        }/>
       </Switch>
     </div>
   );
 }
 
+const mapStateToProps = ({user}: AppState) => ({
+  currentUser: user.currentUser
+})
 const mapDispatchToProps = (dispatch: Dispatch ) => ({
   setCurrentUser: (user: any) => dispatch(setCurrentUser(user))
 })
-export default connect( null, mapDispatchToProps )(App);
+export default connect( mapStateToProps, mapDispatchToProps )(App);
