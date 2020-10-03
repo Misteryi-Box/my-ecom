@@ -8,4 +8,5 @@ export default combineReducers({
   cart: cartReducer
 })
 
+//https://redux.js.org/recipes/usage-with-typescript
 //dev.to/leomeloxp/taking-react-and-redux-to-the-next-level-with-typescript-1m84

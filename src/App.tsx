@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { Dispatch } from "redux";
 import {connect} from 'react-redux'
+
 import Homepage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import SignInSignUpPage from './pages/sign-in-sign-up/sign-in-sign-up.component';
@@ -10,7 +11,7 @@ import { AppState } from './redux/store';
 import Header from './components/header/header.component';
 
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
-import { setCurrentUser } from './redux/user/user.actions';
+import { setCurrentUserAction } from './redux/user/user.actions';
 import './App.css';
 
 interface AppProps {
@@ -63,6 +64,6 @@ const mapStateToProps = ({user}: AppState) => ({
   currentUser: user.currentUser
 })
 const mapDispatchToProps = (dispatch: Dispatch ) => ({
-  setCurrentUser: (user: any) => dispatch(setCurrentUser(user))
+  setCurrentUser: (user: any) => dispatch(setCurrentUserAction(user))
 })
 export default connect( mapStateToProps, mapDispatchToProps )(App);

@@ -2,13 +2,13 @@ import React from 'react';
 import { Dispatch } from 'redux';
 import { connect, ConnectedProps } from 'react-redux';
 
-import { toggleCartHidden } from '../../redux/cart/cart.actions'
+import { toggleCartHiddenAction } from '../../redux/cart/cart.actions'
 import { ReactComponent as ShoppingIcon} from '../../assets/shopping-bag.svg';
 
 import './cart-icon.styles.scss';
 
 const mapDispatch = (dispatch:Dispatch) => ({
-  toggleCartHidden: () => dispatch(toggleCartHidden())
+  toggleCartHidden: () => dispatch(toggleCartHiddenAction())
 })
 const connector = connect(null, mapDispatch);
 
