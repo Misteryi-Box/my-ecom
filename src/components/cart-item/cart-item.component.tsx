@@ -1,10 +1,10 @@
 import React from 'react';
-import { itemType } from '../../redux/cart/cart.types';
+import { ItemType } from '../../redux/cart/cart.types';
 
 import './cart-item.styles.scss';
 
 type CartItemProps = {
-  item: itemType
+  item: ItemType
 }
 const CartItem = ({
   item: {

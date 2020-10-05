@@ -4,7 +4,7 @@ import { Dispatch } from 'redux';
 import { addItemAction } from '../../redux/cart/cart.actions';
 import { 
   // CartState, 
-  itemType 
+  ItemType 
 } from '../../redux/cart/cart.types';
 import CustomButton from '../custom-button/custom-button.component';
 
@@ -14,13 +14,8 @@ import './collection-item.styles.scss';
 
 // }
 
-const mapDispatchToProps = (dispatch:Dispatch) => ({
-  addItem: (item: itemType) => dispatch(addItemAction(item))
-})
-const connector = connect(null, mapDispatchToProps);
-
 type CollectionItemProps = ConnectedProps<typeof connector> & {
-  item: itemType
+  item: ItemType
 }
 
 const CollectionItem = ({
@@ -35,7 +30,7 @@ const CollectionItem = ({
         style={{
           backgroundImage: `url(${imageUrl})`
         }}
-      />
+        />
       <div className='collection-footer'>
         <span className='name'>{name}</span>
         <span className='price'>{price}</span>
@@ -44,5 +39,10 @@ const CollectionItem = ({
     </div>
   )
 };
+
+const mapDispatchToProps = (dispatch:Dispatch) => ({
+  addItem: (item: ItemType) => dispatch(addItemAction(item))
+})
+const connector = connect(null, mapDispatchToProps);
 
 export default connector(CollectionItem);
