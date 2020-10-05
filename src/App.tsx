@@ -13,6 +13,7 @@ import Header from './components/header/header.component';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUserAction } from './redux/user/user.actions';
 import './App.css';
+import Checkout from './pages/checkout/checkout.component';
 
 interface AppProps {
   currentUser: any;
@@ -50,7 +51,8 @@ const App = ({
       <Header />
       <Switch>
         <Route exact path='/' component={Homepage}/>
-        <Route exact path='/shop' component={ShopPage}/>
+        <Route path='/shop' component={ShopPage}/>
+        <Route exact path='/checkout' component={Checkout}/>
         {/* <Route exact path='/signin' component={SignInSignUpPage}/> */}
         <Route exact path='/signin' render={() => 
           ( currentUser ? (<Redirect to='/' />) : <SignInSignUpPage /> )

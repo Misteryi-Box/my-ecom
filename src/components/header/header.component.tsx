@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect, ConnectedProps } from 'react-redux';
-
 import { AppState } from '../../redux/store';
 import { auth } from '../../firebase/firebase.utils';
 
@@ -9,17 +8,9 @@ import { ReactComponent as Logo } from '../../assets/crown.svg';
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
+import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { selectCartHidden } from '../../redux/cart/cart.selectors';
 import './header.styles.scss';
-
-const mapStateToProps = ({
-  user: { currentUser },
-  cart: { hidden }
-}: AppState) => ({
-  currentUser,
-  hidden
-})
-
-const connector = connect(mapStateToProps);
 
 type HeaderProps = ConnectedProps<typeof connector>
 
@@ -44,5 +35,11 @@ const Header = ({
     {hidden ? null : <CartDropdown />}
   </div>
 );
+const mapStateToProps = (state: AppState) => ({
+  currentUser: selectCurrentUser(state),
+  hidden: selectCartHidden(state)
+})
+
+const connector = connect(mapStateToProps);
 
 export default connector(Header);
