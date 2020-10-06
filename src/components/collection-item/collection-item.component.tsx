@@ -2,20 +2,13 @@ import React from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { Dispatch } from 'redux';
 import { addItemAction } from '../../redux/cart/cart.actions';
-import { 
-  // CartState, 
-  ItemType 
-} from '../../redux/cart/cart.types';
+import { ItemType } from '../../redux/cart/cart.types';
 import CustomButton from '../custom-button/custom-button.component';
 
 import './collection-item.styles.scss';
 
-// const mapStateToProps = (state: CartState) => {
-
-// }
-
 type CollectionItemProps = ConnectedProps<typeof connector> & {
-  item: ItemType
+  item: any
 }
 
 const CollectionItem = ({

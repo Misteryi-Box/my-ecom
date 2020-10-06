@@ -2,18 +2,19 @@ import React from 'react';
 import { RouteComponentProps, withRouter }  from 'react-router-dom';
 import './menu-item.styles.scss';
 
-// type MenuItemProps = {
-//   title: string,
-//   imageUrl: string,
-//   size?: string
-// };
-
 interface MenuItemProps extends RouteComponentProps {
   title: string,
   imageUrl: string,
   size?: string,
   linkUrl: string
 };
+
+// type MenuItemProps = RouteComponentProps & {
+//   title: string,
+//   imageUrl: string,
+//   size?: string,
+//   linkUrl: string
+// };
 
 const MenuItem = ({
   title,

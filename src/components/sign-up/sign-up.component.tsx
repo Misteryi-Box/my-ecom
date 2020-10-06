@@ -38,8 +38,6 @@ const SignUp = () => {
     } catch (err){
       console.error(err);
     }
-
-    // reset();
   };
 
   return (
@@ -56,7 +54,6 @@ const SignUp = () => {
               required: "Required",
             })
           }
-          // refPass
         />
         <FormInput 
           type='email'
@@ -71,7 +68,6 @@ const SignUp = () => {
               } 
             })
           }
-          // refPass
         />
         <FormInput 
           type='password'
@@ -82,7 +78,6 @@ const SignUp = () => {
               required: "Required",
             })
           }
-          // refPass
         />
         <FormInput 
           type='password'
@@ -93,7 +88,6 @@ const SignUp = () => {
               required: "Required",
             })
           }
-          // refPass
         />
         <CustomButton type='submit'>Sign up</CustomButton>
       </form>

@@ -47,7 +47,6 @@ const SignInForm = () => {
           } 
           // required
         />
-        {/* <label>Email</label> */}
         <FormInput 
           name='password' 
           type='password' /*value={password}*/ 
@@ -55,7 +54,6 @@ const SignInForm = () => {
           label="Password"
           // required
         />
-        {/* <label>Password</label> */}
         <div className='buttons'>
           <CustomButton type='submit'>Sign in</CustomButton>
           <CustomButton type='button' onClick={signInWithGoogle} isGoogleSignIn>Sign in with Google</CustomButton>

@@ -21,9 +21,6 @@ const CollectionPreview = ({
           .map((item) => (
             <CollectionItem key={item.id} item={item}/>
           ))
-          // .map(({id,name}) => (
-          //   <div key={id}>{name}</div>
-          // ))
       }
     </div>
   </div>

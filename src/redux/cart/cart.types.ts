@@ -5,17 +5,17 @@ export enum CART_ACTION_CONSTS {
   CLEAR_ITEM_FROM_CART = 'CLEAR_ITEM_FROM_CART'
 }
 
-export interface CartState{
-  hidden: boolean;
-  cartItems: ItemType[]
-}
-
 export type ItemType = {
-  id: string,
+  id: number,
   name: string,
   imageUrl: string,
   price: number,
   quantity: number
+}
+
+export interface CartState{
+  hidden: boolean;
+  cartItems: ItemType[]
 }
 
 // Action Interfaces
